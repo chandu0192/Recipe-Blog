@@ -5,9 +5,288 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Base Styles & Utilities */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f9fafb;
+            color: #374151;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        /* Main Container for Padding */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1rem; /* 1rem padding for mobile */
+        }
+        
+        /* Media query to adjust padding on larger screens */
+        @media (min-width: 640px) {
+            .main-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        /* Header Section */
+        .header-bg {
+            background-image: url('restro.jpg');
+            background-size: cover;
+            background-position: center top;
+            position: relative;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .header-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.125rem;
+            margin-top: 0.5rem;
+        }
+
+        .header-nav {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .nav-link {
+            color: white;
+        }
+
+        .nav-link:hover {
+            color: #fbbf24;
+        }
+
+        /* General Section and Headings */
+        .section {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .section-heading {
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            color: #111827;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #4b5563;
+            max-width: 42rem;
+            margin: 0 auto 2.5rem;
+        }
+
+        .section-subheading {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Recipes Grid Section */
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .recipe-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .recipe-card:hover {
+            transform: scale(1.03);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+        }
+
+        .recipe-card .p-6 {
+            padding: 1.5rem;
+        }
+
+        .recipe-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .recipe-description-small {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .view-recipe-link {
+            display: inline-block;
+            color: #4f46e5;
+            font-weight: 500;
+        }
+
+        .view-recipe-link:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section */
+        .about-section {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        .about-paragraph {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .about-image {
+            width: 100%;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .contact-form {
+            max-width: 36rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #4f46e5;
+        }
+
+        .contact-btn {
+            width: 100%;
+            background-color: #4f46e5;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem;
+            border: 1px solid #4f46e5;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            background-color: #4338ca;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            color: #d1d5db;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        /* Tablet & Desktop */
+        @media (min-width: 768px) {
+            .header-bg {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            .header-title {
+                font-size: 3rem;
+            }
+            .header-nav {
+                font-size: 1rem;
+            }
+            .recipes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-content {
+                flex-direction: row;
+            }
+            .about-text {
+                width: 50%;
+            }
+            .about-image {
+                width: 50%;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1024px) {
+            .recipes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
     <!-- Header with Background Image -->
     <header class="header-bg">
@@ -112,7 +391,7 @@
                     </p>
                 </div>
                 <div class="about-image">
-                    <!-- Placeholder for an image or graphic -->
+                    <img src="https://placehold.co/600x400/A5D6A7/000?text=About+Us" alt="About Us" style="width:100%; height: auto; border-radius: 0.75rem; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);">
                 </div>
             </div>
         </section>
